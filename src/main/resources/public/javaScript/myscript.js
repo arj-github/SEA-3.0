@@ -24,7 +24,7 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 		// neue Zeile am Ende der exist. Tabelle anfügen
 		tabelle.insertAdjacentHTML("beforeend", "<tr>"
 			+ "<td>02</td>"
-			+ "<td><img src='images/man.png'></td>"
+			+ "<td><img src='" + getIcon(laufvariable.anrede) + "'></td>"
 			+ "<td>" + laufvariable.anrede + "</td>"
 			+ "<td>" + laufvariable.vorname + "</td>"
 			+ "<td>" + laufvariable.nachname + "</td>"
@@ -33,6 +33,18 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 		//		document.getElementById("id001").textContent = laufvariable.vorname;
 		//		document.getElementById("id002").textContent = laufvariable.nachname;
 	}
+
+	function getIcon(anrede) {
+		switch (anrede) {
+			case "Herr":
+				return 'images/man.png'
+			case "Frau":
+				return 'images/woman.png'
+			default:
+				return 'images/woman.png'
+		}
+	}
+
 }
 
 fetch("personen.json")
