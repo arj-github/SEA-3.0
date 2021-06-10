@@ -1,17 +1,17 @@
 {
 	"personen": [
 		{
-			"vorname": "Paul",
-			"nachname": "Paulsen",
+			"vorname": "Adamine",
+			"nachname": "Adamson",
+			"anrede": "Frau"
+		},
+		{
+			"vorname": "Bernd",
+			"nachname": "Braun",
 			"anrede": "Herr"
 		},
 		{
-			"vorname": "Paul",
-			"nachname": "Paulsen",
-			"anrede": "Herr"
-		},
-		{
-			"vorname": "Paul",
+			"vorname": "Franz",
 			"nachname": "Paulsen",
 			"anrede": "Herr"
 		}
