@@ -12,17 +12,27 @@ para.textContent = "Hello from JavaScript";
 
 
 // json einlesen
-function getJson(irgendwas) {
-	return irgendwas.json();
+function getJson(irgendwas) { 	// irgendwas beinhaltet json mit allen kommunikations-metadaten 
+	return irgendwas.json();	// irgendwas.json ist der rheine json-inhalt
 }
 
 // celle ersetzen
 function getTxtFromJsonUndPackInsHTML(myjson) {
-	var cell_vorname = document.getElementById("id001");
-	cell_vorname.textContent = myjson.personen[0].vorname;
-	var cell_nachname = document.getElementById("id002");
-	cell_nachname.textContent = myjson.personen[0].nachname;
-	document.getElementById("id003").textContent =myjson.personen[0].anrede; 
+	var tabelle = document.getElementById("tid001");
+	for (var laufvariable of myjson.personen) {
+
+		// neue Zeile am Ende der exist. Tabelle anfügen
+		tabelle.insertAdjacentHTML("beforeend", "<tr>"
+			+ "<td>02</td>"
+			+ "<td><img src='images/man.png'></td>"
+			+ "<td>" + laufvariable.anrede + "</td>"
+			+ "<td>" + laufvariable.vorname + "</td>"
+			+ "<td>" + laufvariable.nachname + "</td>"
+			+ "</tr>")
+		//		document.getElementById("id003").textContent = laufvariable.anrede;
+		//		document.getElementById("id001").textContent = laufvariable.vorname;
+		//		document.getElementById("id002").textContent = laufvariable.nachname;
+	}
 }
 
 fetch("personen.json")
