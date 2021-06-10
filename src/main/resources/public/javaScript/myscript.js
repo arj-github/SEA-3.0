@@ -19,14 +19,15 @@ function getJson(irgendwas) { 	// irgendwas beinhaltet json mit allen kommunikat
 // celle ersetzen
 function getTxtFromJsonUndPackInsHTML(myjson) {
 	var tabelle = document.getElementById("tid001");
+	var i = 0;
 	for (var laufvariable of myjson.personen) {
-
 		// neue Zeile am Ende der exist. Tabelle anfügen
-		tabelle.insertAdjacentHTML("beforeend", "<tr>"
-			+ "<td>02</td>"
-			+ "<td><img src='" + getIcon(laufvariable.anrede) + "'></td>"
-			+ "<td>" + laufvariable.anrede + "</td>"
-			+ "<td>" + laufvariable.vorname + "</td>"
+		tabelle.insertAdjacentHTML("beforeend",
+			"<tr>"
+			+ `<td> ${++i} </td>`
+			+ `<td><img src= ${getIcon(laufvariable.anrede)} ></td>`
+			+ `<td> ${laufvariable.anrede} </td>`		// formatierte Form der eingebundenen Strings
+			+ "<td>" + laufvariable.vorname + "</td>"	// Strings einbinden mit +
 			+ "<td>" + laufvariable.nachname + "</td>"
 			+ "</tr>")
 		//		document.getElementById("id003").textContent = laufvariable.anrede;
@@ -44,7 +45,6 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 				return 'images/woman.png'
 		}
 	}
-
 }
 
 fetch("personen.json")
