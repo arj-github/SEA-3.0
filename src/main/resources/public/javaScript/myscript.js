@@ -1,5 +1,5 @@
 // json einlesen
-function getJson(irgendwas) {  
+function getJson(irgendwas) {
 	return irgendwas.json();
 }
 
@@ -31,25 +31,36 @@ function getIcon(anrede) {
 	}
 }
 
-function oninputclick(event){
+function oninputclick(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	console.log("click");
-	
+
 	var vorname = document.getElementById("vorname").value;
 	console.log(vorname);
 	var nachname = document.getElementById("nachname").value;
 	console.log(nachname);
 	var anrede = document.getElementById("anrede").value;
 	console.log(anrede);
-	
+	var jsondata = `{"vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
+	console.log(jsondata);
+
+	fetch("http://localhost:8080/edpunktAmServer", {
+		method: 'POST', // or 'PUT' or beim reden 'GET'; method muss sein
+		body: jsondata,
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+
 }
 
-var input = document.getElementById("button");
 
+
+var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
 
-fetch("personen.json")
-	.then(getJson) 
+fetch("http://localhost:8080/personen.json")
+	.then(getJson)
 	.then(getTxtFromJsonUndPackInsHTML)
 
 
@@ -58,7 +69,7 @@ fetch("personen.json")
 	console.log("Query anzeigen: " + query);  //fname=FN&lname=LN&salut=ST
 	var vars = query.split("&");              //  trennung nach &
 	for (var i = 0; i < vars.length; i++) {   //  fname=FN    lname=LN   salut=ST
-		var pair = vars[i].split("=");        //  trennung nach = 
+		var pair = vars[i].split("=");        //  trennung nach =
 		console.log("Vars i: " + vars[i]);    //  fname=FN    lname=LN   salut=ST
 		console.log("pair: " + pair[0]);      // fname
 		console.log("pair: " + pair[1]);      // FN
