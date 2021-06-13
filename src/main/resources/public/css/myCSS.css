@@ -1,0 +1,57 @@
+body {
+	max-width: 44ch;
+	margin: auto;
+	padding: 0 1em;
+	color: midnightblue;
+}
+
+h1 {
+	border: thin solid;
+	padding: 0.25em;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: -webkit-max-content;
+	max-width: -moz-max-content;
+	max-width: max-content;
+	text-align: center;
+	background-color: #EED2EE;
+}
+
+h3 {
+	text-align: center;
+}
+
+form {
+	max-width: 44ch;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0.25em;
+	border: thin solid;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #EED2EE;
+}
+
+table {
+	max-width: 44ch;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0.25em;
+	border: thin solid;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bereich1 {
+	border: thin solid;
+	margin-bottom: auto;
+	background-color: #E6E6FA;
+}
+
+.hintergrundFuerAlles {
+	border: thin solid;
+	margin-bottom: auto;
+	background-color: #20B2AA;
+}
