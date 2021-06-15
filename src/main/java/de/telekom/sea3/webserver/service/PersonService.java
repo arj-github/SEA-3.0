@@ -17,5 +17,9 @@ public class PersonService {
 		System.out.println("PersonRepository: " + personRepository.toString());
 		this.personRepository = personRepository;
 	}
-
+	
+	
+	public int getSize() {
+		return personRepository.getSize();
+	}
 }
