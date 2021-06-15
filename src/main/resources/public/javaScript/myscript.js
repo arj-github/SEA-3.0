@@ -59,7 +59,12 @@ function oninputclick(event) {
 var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
 
-fetch("http://localhost:8080/personen.json")
+/*Original fetch von der personen.json
+  fetch("http://localhost:8080/personen.json")
+	.then(getJson)
+	.then(getTxtFromJsonUndPackInsHTML)*/
+	
+fetch("http://localhost:8080/allpersons")
 	.then(getJson)
 	.then(getTxtFromJsonUndPackInsHTML)
 
