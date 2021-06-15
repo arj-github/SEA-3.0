@@ -1,14 +1,15 @@
 package de.telekom.sea3.webserver.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import de.telekom.sea3.webserver.model.Personen;
+import de.telekom.sea3.webserver.model.Size;
 import de.telekom.sea3.webserver.service.PersonService;
 
-@Controller
+@RestController
 public class PersonRestController {
 	
 	private PersonService personService;
@@ -21,51 +22,24 @@ public class PersonRestController {
 	}
 	
 	/**
-	 * @see URL: <a href="http://localhost:8080/json/persons/all">doku</a>
-	 * ist nur ein Kommentar
-	 * @return
+	 * Durch die Annotation der Klasse @RestController
+	 * weiss Spring, dass wir aus der JavaKlasse Personen einen json-String wollen
+	 * dazu deklarieren wir als rückgabewert Personen
+	 * Spring wandelt daraus ein json
 	 */
 	@GetMapping("/json/persons/all")
-	@ResponseBody	// wir sagen Spring dass html kommt - gib an den Server
-	public String getAllPersons() {
+	public Personen getAllPersons() {
 		
 		Personen personen = personService.getAllPersons();
-		personen.toJson();
-		
-		String string = "{\n"
-				+ "	\"personen\": [\n"
-				+ "		{\n"
-				+ "			\"vorname\": \"Adamine\",\n"
-				+ "			\"nachname\": \"Adamson\",\n"
-				+ "			\"anrede\": \"Frau\"\n"
-				+ "		},\n"
-				+ "		{\n"
-				+ "			\"vorname\": \"Bernd\",\n"
-				+ "			\"nachname\": \"Braun\",\n"
-				+ "			\"anrede\": \"Herr\"\n"
-				+ "		},\n"
-				+ "		{\n"
-				+ "			\"vorname\": \"Franz\",\n"
-				+ "			\"nachname\": \"Paulsen\",\n"
-				+ "			\"anrede\": \"Herr\"\n"
-				+ "		}\n"
-				+ "	]\n"
-				+ "}";
-		return string;
+		return personen;
 
 	}
 	
 	@GetMapping("/json/persons/size")
-	@ResponseBody	// wir sagen Spring dass html kommt - gib an den Server
-	public String getSize() {
-		
-		int size = personService.getSize();
-		
-		String string = String.format("{\n"
-				+ "	\"size\": %d\n"
-				+ "}",size);
-		return string;
+	public Size getSize() {
 
+		return new Size(personService.getSize());
+		
 	}
 	
 	
