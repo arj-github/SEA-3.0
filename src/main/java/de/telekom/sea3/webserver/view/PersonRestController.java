@@ -16,11 +16,16 @@ public class PersonRestController {
 	// Verbindung der Klassen - personService zu PersonController
 	@Autowired
 	public PersonRestController(PersonService personService) {
-		super();
+		super(); 
 		this.personService = personService;
 	}
 	
-	@GetMapping("/allpersons")
+	/**
+	 * @see URL: <a href="http://localhost:8080/json/persons/all">doku</a>
+	 * ist nur ein Kommentar
+	 * @return
+	 */
+	@GetMapping("/json/persons/all")
 	@ResponseBody	// wir sagen Spring dass html kommt - gib an den Server
 	public String getAllPersons() {
 		
@@ -49,5 +54,19 @@ public class PersonRestController {
 		return string;
 
 	}
+	
+	@GetMapping("/json/persons/size")
+	@ResponseBody	// wir sagen Spring dass html kommt - gib an den Server
+	public String getSize() {
+		
+		int size = personService.getSize();
+		
+		String string = String.format("{\n"
+				+ "	\"size\": %d\n"
+				+ "}",size);
+		return string;
+
+	}
+	
 	
 }
