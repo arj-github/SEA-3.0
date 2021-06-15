@@ -19,13 +19,20 @@ public class PersonService {
 		this.personRepository = personRepository;
 	}
 	
-	
 	public int getSize() {
 		return personRepository.getSize();
 	}
 	
-	
 	public Personen getAllPersons() {
-		return new Personen();
+		return new Personen(personRepository.getAll());
+	}
+
+	public Person get(int id) {
+		return new Person(1, "Frau", "Angelika", "Neu" );
+	}
+
+	public Person add(Person person) {
+		personRepository.add(person);
+		return person;
 	}
 }

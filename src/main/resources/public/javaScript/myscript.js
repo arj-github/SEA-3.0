@@ -44,8 +44,8 @@ function oninputclick(event) {
 	var jsondata = `{"vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
 	console.log(jsondata);
 
-	fetch("http://localhost:8080/edpunktAmServer", {
-		method: 'POST', // or 'PUT' or beim reden 'GET'; method muss sein
+	fetch("http://localhost:8080/json/person", {
+		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
 		headers: {
 			'Content-Type': 'application/json'
@@ -55,33 +55,12 @@ function oninputclick(event) {
 }
 
 
-
 var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
 
-/*Original fetch von der personen.json
-  fetch("http://localhost:8080/personen.json")
-	.then(getJson)
-	.then(getTxtFromJsonUndPackInsHTML)*/
-	
-fetch("http://localhost:8080/allpersons")
+fetch("http://localhost:8080/json/persons/all")
 	.then(getJson)
 	.then(getTxtFromJsonUndPackInsHTML)
-
-
-/*function getQueryVariable(variable) {
-	var query = window.location.search.substring(1);
-	console.log("Query anzeigen: " + query);  //fname=FN&lname=LN&salut=ST
-	var vars = query.split("&");              //  trennung nach &
-	for (var i = 0; i < vars.length; i++) {   //  fname=FN    lname=LN   salut=ST
-		var pair = vars[i].split("=");        //  trennung nach =
-		console.log("Vars i: " + vars[i]);    //  fname=FN    lname=LN   salut=ST
-		console.log("pair: " + pair[0]);      // fname
-		console.log("pair: " + pair[1]);      // FN
-		if (pair[0] == variable) { return pair[1]; }
-	}
-	return (false);
-}*/
 
 
 
