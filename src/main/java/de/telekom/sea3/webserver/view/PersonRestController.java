@@ -26,9 +26,9 @@ public class PersonRestController {
 	
 	/**
 	 * Durch die Annotation der Klasse @RestController
-	 * weiss Spring, dass wir aus der JavaKlasse Personen einen json-String wollen
+	 * weiss Spring, dass wir aus der JavaKlasse Personen einen json-String machen wollen
 	 * dazu deklarieren wir als rückgabewert Personen
-	 * Spring wandelt daraus ein json
+	 * Spring leitet daraus ein json ab
 	 */
 	@GetMapping("/json/persons/all")
 	public Personen getAllPersons() {

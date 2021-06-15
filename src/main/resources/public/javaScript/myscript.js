@@ -61,6 +61,3 @@ input.addEventListener("click", oninputclick);
 fetch("http://localhost:8080/json/persons/all")
 	.then(getJson)
 	.then(getTxtFromJsonUndPackInsHTML)
-
-
-
