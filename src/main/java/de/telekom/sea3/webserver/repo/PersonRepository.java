@@ -4,7 +4,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class PersonRepository {
-	public void getSize() {};
-	
-	
+
+	public int getSize() 	 {
+		return 0;
+	}
 }
