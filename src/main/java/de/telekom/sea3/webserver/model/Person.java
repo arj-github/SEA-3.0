@@ -7,12 +7,12 @@ public class Person {
 	private String nachname;
 	private String anrede;
 
+	public Person() {};
 	public Person(int i, String anrede, String vorname, String nachname) {
 		this.id = i;
 		this.anrede = anrede;
 		this.vorname = vorname;
 		this.nachname = nachname;
-		// delete
 		// update
 		// eMail einbauen
 		// Strasse PLZ Ort

@@ -3,7 +3,7 @@ function getJson(irgendwas) {
 	return irgendwas.json();
 }
 
-// celle ersetzen
+// Json-kommt vom Server und wird im Browser ausgegeben
 function getTxtFromJsonUndPackInsHTML(myjson) {
 	var tabelle = document.getElementById("tid001");
 	var i = 0;
@@ -31,18 +31,21 @@ function getIcon(anrede) {
 	}
 }
 
+function resetElement(id) {
+	document.getElementById(id).reset();
+}
+
+// Aus dem Browser lesen und auf dem Server "posten"
 function oninputclick(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	console.log("click");
 
+	var id = document.getElementById("id").value;
 	var vorname = document.getElementById("vorname").value;
-	console.log(vorname);
 	var nachname = document.getElementById("nachname").value;
-	console.log(nachname);
 	var anrede = document.getElementById("anrede").value;
-	console.log(anrede);
-	var jsondata = `{"vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
-	console.log(jsondata);
+	
+	var jsondata = `{"id": "${id}","vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
 
 	fetch("http://localhost:8080/json/person", {
 		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
@@ -54,11 +57,12 @@ function oninputclick(event) {
 
 }
 
+
+
 function ondelete(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
-	console.log("click");
 	
-	var id = document.getElementById("id").value;
+	var id = document.getElementById("deleteId").value;
 	console.log(id);
 		
 	fetch(`http://localhost:8080/json/person/${id}`, {
@@ -67,13 +71,50 @@ function ondelete(event) {
 
 }
 
+function onupdate(event) {
+	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
+	
+	var id = document.getElementById("id").value;
+	var vorname = document.getElementById("vorname").value;
+	var nachname = document.getElementById("nachname").value;
+	var anrede = document.getElementById("anrede").value;
+	
+	var jsondata = `{"id": "${id}","vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
+
+	fetch("http://localhost:8080/json/person", {
+		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
+		body: jsondata,
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+
+}
+
+function onrefresh(event) {
+	getAllPersons();
+
+}
 
 var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
 
-var input2 = document.getElementById("deletebutton");
-input2.addEventListener("click", ondelete);
+var input = document.getElementById("deletebutton");
+input.addEventListener("click", ondelete);
 
+var input = document.getElementById("refreshbutton");
+input.addEventListener("click", onrefresh);
+
+var input = document.getElementById("updatebutton");
+input.addEventListener("click", onupdate);
+
+function getAllPersons(){
 fetch("http://localhost:8080/json/persons/all")
 	.then(getJson)
-	.then(getTxtFromJsonUndPackInsHTML)
+	.then(getTxtFromJsonUndPackInsHTML);
+	resetElement("formJoinUs");
+	resetElement("formDelete");
+}
+
+
+getAllPersons();
