@@ -31,9 +31,18 @@ function getIcon(anrede) {
 	}
 }
 
-function resetElement(id) {
-	document.getElementById(id).reset();
+function resetForm() {
+	document.getElementById("form").reset();
 }
+
+function resetTable() {
+	var tb = document.querySelectorAll('td');
+	console.log(tb);
+  	for (var i = 0; i < tb.length; i++) {
+		tb[i].parentNode.removeChild(tb[i]);
+    }
+}
+
 
 // Aus dem Browser lesen und auf dem Server "posten"
 function oninputclick(event) {
@@ -62,8 +71,7 @@ function oninputclick(event) {
 function ondelete(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	
-	var id = document.getElementById("deleteId").value;
-	console.log(id);
+	var id = document.getElementById("id").value;
 		
 	fetch(`http://localhost:8080/json/person/${id}`, {
 		method: 'DELETE'
@@ -81,8 +89,8 @@ function onupdate(event) {
 	
 	var jsondata = `{"id": "${id}","vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
 
-	fetch("http://localhost:8080/json/person", {
-		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
+	fetch("http://localhost:8080/json/person/", {
+		method: 'PUT', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
 		headers: {
 			'Content-Type': 'application/json'
@@ -92,6 +100,7 @@ function onupdate(event) {
 }
 
 function onrefresh(event) {
+	resetTable();
 	getAllPersons();
 
 }
@@ -112,8 +121,7 @@ function getAllPersons(){
 fetch("http://localhost:8080/json/persons/all")
 	.then(getJson)
 	.then(getTxtFromJsonUndPackInsHTML);
-	resetElement("formJoinUs");
-	resetElement("formDelete");
+	resetForm();
 }
 
 
