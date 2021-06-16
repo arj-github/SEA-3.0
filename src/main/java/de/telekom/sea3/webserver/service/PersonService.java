@@ -37,7 +37,6 @@ public class PersonService {
 	}
 
 	public void delete(int id) {
-		System.out.println("Person wurde gelöscht.");
 		personRepository.delete(id);
 	}
 }

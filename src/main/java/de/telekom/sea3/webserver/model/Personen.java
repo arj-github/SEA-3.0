@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+// Das ist nur ein Spiegelbild vom Json. Keine Aktionen nur Datenhaltung
 public class Personen {
 
 	private List<Person> personen = new ArrayList<Person>();
@@ -20,8 +21,4 @@ public class Personen {
 		this.personen = personen;
 	}
 	
-	public void deletePerson(int id) {
-		this.personen.remove(id);
-	}
-
 }
