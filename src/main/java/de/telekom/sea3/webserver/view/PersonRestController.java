@@ -1,6 +1,7 @@
 package de.telekom.sea3.webserver.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,12 +47,13 @@ public class PersonRestController {
 	
 	
 	/**
-	 * Da die PathVariable - hier die id - ist flexibel - variabel
-	 * Sie wird durch die Annotation @PathVariable("id") erreicht
-	 * Das "id" bei PathVariable entspricht dem was in der URL in {id} steht:
+	 * @GetMapping("/json/person/{id}")
+	 * Für die Pathvariable "id" wird beim Aufruf ein Wert eingesetzt.
+	 * Z.B. um das Element mit ID x zu wählen http://8080/json/person/x") 
+	 * Die Annotation (@PathVariable("id") int id) vermittelt Spring das das Parameter aus der PathVariable stammt.
 	 * hier haben wir beim @GetMapping statt persons - person in der URL geschrieben
-	 * Grund - wir konnten als id "size" übergeben können
-	 * Dann würden wir die /json/persons/size URL aufrufen und nicht die /json/person/{id} 
+	 * Grund - wir könnten als id "size" übergeben können
+	 * dann würde die /json/persons/size URL aufgerufen und nicht die /json/person/{id} 
 	 * @param id
 	 * @return
 	 */
@@ -72,6 +74,12 @@ public class PersonRestController {
 	@PostMapping("/json/person")
 	public Person addPerson(@RequestBody Person person) {
 		 return personService.add(person);
+		
+	}
+	
+	@DeleteMapping("/json/person/{id}")
+	public void deletePerson(@PathVariable("id") int id) {
+		personService.delete(id);
 		
 	}
 		

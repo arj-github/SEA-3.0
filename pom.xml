@@ -40,7 +40,8 @@
 	</dependencies>
 
 	<!-- 4. Properties - Maven mitteilen welche java.Vesion gemeint ist, welche 
-		codierung wir nutzen -->
+		codierung wir nutzen 
+		Der Springboot Anteil wird in die jar-Datei mit verpackt-->
 	<build>
 		<plugins>
 			<plugin>
