@@ -25,12 +25,26 @@ public class PersonRepository {
 	}
 
 	public void delete(int id) {
-		System.out.println(personen.size());	
 		for (int i = 0; i < personen.size(); i++) {
 			if (personen.get(i).getId() == id) {
 				personen.remove(i);
 			}
-		System.out.println(personen.size());	
+		}
+	}
+	
+	public void update(Person person) {
+		for (int i = 0; i < personen.size(); i++) {
+			if (personen.get(i).getId() == person.getId()) {
+				if (!(personen.get(i).getAnrede()==person.getAnrede())){
+					personen.get(i).setAnrede(person.getAnrede());
+				};
+				if (!(personen.get(i).getVorname()==person.getVorname())){
+					personen.get(i).setVorname(person.getVorname());
+				};
+				if (!(personen.get(i).getNachname()==person.getNachname())){
+					personen.get(i).setNachname(person.getNachname());
+				};
+			}
 		}
 	}
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-// Das ist nur ein Spiegelbild vom Json. Keine Aktionen nur Datenhaltung
+// Das ist nur ein Spiegelbild vom Json. Keine Aktionen hier. Nur Datenhaltung
 public class Personen {
 
 	private List<Person> personen = new ArrayList<Person>();
