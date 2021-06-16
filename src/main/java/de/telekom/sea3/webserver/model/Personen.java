@@ -19,5 +19,9 @@ public class Personen {
 	public void setPersonen(List<Person> personen) {
 		this.personen = personen;
 	}
+	
+	public void deletePerson(int id) {
+		this.personen.remove(id);
+	}
 
 }

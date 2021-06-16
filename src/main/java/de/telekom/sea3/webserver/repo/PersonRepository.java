@@ -23,4 +23,9 @@ public class PersonRepository {
 	public List<Person> getAll() {
 		return personen;
 	}
+	
+	public void delete(int id) {
+		int index = id - 1;
+		personen.remove(index);
+	}
 }

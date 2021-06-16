@@ -54,9 +54,25 @@ function oninputclick(event) {
 
 }
 
+function ondelete(event) {
+	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
+	console.log("click");
+	
+	var id = document.getElementById("id").value;
+	console.log(id);
+		
+	fetch(`http://localhost:8080/json/person/${id}`, {
+		method: 'DELETE'
+	});
+
+}
+
 
 var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
+
+var input2 = document.getElementById("deletebutton");
+input2.addEventListener("click", ondelete);
 
 fetch("http://localhost:8080/json/persons/all")
 	.then(getJson)

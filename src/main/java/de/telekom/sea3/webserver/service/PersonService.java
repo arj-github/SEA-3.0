@@ -8,9 +8,9 @@ import de.telekom.sea3.webserver.repo.PersonRepository;
 
 @Service
 public class PersonService {
-	
+
 	private PersonRepository personRepository;
-	
+
 	@Autowired
 	public PersonService(PersonRepository personRepository) {
 		super();
@@ -18,21 +18,26 @@ public class PersonService {
 		System.out.println("PersonRepository: " + personRepository.toString());
 		this.personRepository = personRepository;
 	}
-	
+
 	public int getSize() {
 		return personRepository.getSize();
 	}
-	
+
 	public Personen getAllPersons() {
 		return new Personen(personRepository.getAll());
 	}
 
 	public Person get(int id) {
-		return new Person(1, "Frau", "Angelika", "Neu" );
+		return new Person(1, "Frau", "Angelika", "Neu");
 	}
 
 	public Person add(Person person) {
 		personRepository.add(person);
 		return person;
+	}
+
+	public void delete(int id) {
+		System.out.println("Person wurde gelöscht.");
+		personRepository.delete(id);
 	}
 }
