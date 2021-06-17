@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import de.telekom.sea3.webserver.model.Personen;
 import de.telekom.sea3.webserver.service.PersonService;
 
 @Controller
@@ -60,7 +61,16 @@ public class PersonHtmlController {
 	// Aufruf: http://localhost:8080/blub/?name=BIBI
 	
 	
-	
+	//Statische Seite, die auf ServerSeite gebaut wird
+	//Grundlage: /templates/personen.html
+	// model.addAttribute("ListenNameInPersonen.html", etwas Iterierbares!!!-hier-eine Liste! keine Referenz! )
+	@GetMapping("/personenX")
+	public String personenMitTemplate(Model model){
+		
+		model.addAttribute("personsList", personService.getAllPersons4ServerTemplate());
+		return "personen";
+
+	}
 	
 	
 	

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/skeleton.css"   -->
+<link rel="stylesheet" href="../css/myCSS.css">
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+
+<title>ARJ Html Trials</title>
+<script src="javaScript/myscript.js" type="module"></script>
+</head>
+<body>
+	<div class="hintergrundFuerAlles">
+		<h1>Gruppe SEA - Welle 4</h1>
+		<hr>
+		<div class="bereich1" id="b01">
+			<h3>Liste der Personen:</h3>
+			<table id="tid001">
+				<tr>
+					<th>Id</th>
+					<th>Pic</th>
+					<th>Anrede</th>
+					<th>Vorname</th>
+					<th>Nachname</th>
+				</tr>
+				<tr th:each="person: ${personsList}">
+					<td th:text="${person.id}">?</td>
+					<td th:text="${person.anrede}">NN</td>
+					<td th:text="${person.vorname}">NN</td>
+					<td th:text="${person.nachname}">NN</td>
+				</tr>
+			</table>
+			<header th:fragment="top">
+				<a th:href="@{/size}">Home page</a>
+			</header>
+			<br>
+
+		</div>
+	</div>
+</body>
+</html>

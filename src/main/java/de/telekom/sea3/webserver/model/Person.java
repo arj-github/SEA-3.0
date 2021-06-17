@@ -13,7 +13,6 @@ public class Person {
 		this.anrede = anrede;
 		this.vorname = vorname;
 		this.nachname = nachname;
-		// update
 		// eMail einbauen
 		// Strasse PLZ Ort
 		// Geburtsdatum
