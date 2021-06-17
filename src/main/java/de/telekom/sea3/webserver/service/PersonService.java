@@ -43,4 +43,9 @@ public class PersonService {
 	public void update(Person person) {
 		personRepository.update(person);
 	}
+
+	public void testdaten() {
+		personRepository.testdaten();
+		
+	}
 }

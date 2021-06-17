@@ -47,4 +47,15 @@ public class PersonRepository {
 			}
 		}
 	}
+
+	public void testdaten() {
+		Person p1 = new Person(1,"Adam", "Adamson", "Herr");
+		Person p2 = new Person(2, "Eva", "Rippe", "Frau");
+		Person p3 = new Person(3, "Jackeline", "Adamson", "Frau");
+		
+		this.add(p1);
+		this.add(p2);
+		this.add(p3);
+				
+	}
 }

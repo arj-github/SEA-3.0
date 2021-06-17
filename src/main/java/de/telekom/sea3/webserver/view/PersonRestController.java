@@ -90,5 +90,11 @@ public class PersonRestController {
 		personService.update(person);
 		
 	}
+	
+	@GetMapping("/json/person/testdaten")
+	public void testdaten() {
+		personService.testdaten();
+		
+	}
 		
 }

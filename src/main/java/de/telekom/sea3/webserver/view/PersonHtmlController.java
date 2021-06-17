@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.telekom.sea3.webserver.model.Size;
 import de.telekom.sea3.webserver.service.PersonService;
 
 @Controller
@@ -16,7 +15,7 @@ public class PersonHtmlController {
 	private PersonService personService;
 	private static final String HTMLTEMPLATE = "<!DOCTYPE html> <html lang='de'>"
 			+ "<head> <meta charset='utf-8'> <meta name='viewport' content='width=device-width, initial-scale=1.0'> "
-			+ "<title>Titel</title> " + "</head> " + "<body>size: %d</body>" + "</html>";
+			+ "<title>Titel</title> " + "</head> " + "<body><h1>size: %d</h1></body>" + "</html>";
 
 	@Autowired
 	public PersonHtmlController(PersonService personService) {
@@ -40,21 +39,30 @@ public class PersonHtmlController {
 
 		return htmlFileName;
 	}
+	
+	@GetMapping("/size2")
+	public String getVarSize(Model model) {
+		model.addAttribute("sizeVar", personService.getSize());
+		return "size2";
+	}
 
 	// Die Variable "name"-siehe html-Seite count.html
 	// wird durch den Wert, den man im Aufruf über /?name=Wert
 	// übergeben wird
 	@GetMapping("/blub")
-	public String leseNameVonURL(Model model,
-			@RequestParam(value = "name",
-					required = false,
-					defaultValue = "World") 
-			String name
-	) {
+	public String leseNameVonURL(Model model, 
+			@RequestParam(value = "name",required = false,defaultValue = "DefaultVon@Reguest") String name ) {
 
 		model.addAttribute("name", name);
 		return "count";
 
 	}
 	// Aufruf: http://localhost:8080/blub/?name=BIBI
+	
+	
+	
+	
+	
+	
+	
 }

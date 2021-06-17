@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-    <html lang='de'>
-    <head>
-        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Titel</title>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+   	<head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+        <meta name="viewport" content='width=device-width, initial-scale=1.0'>
+        <title>Title</title>
     </head>
     <body>
-    	<h1 th:text="|Hello ${name}!|">StandardText, der durch Text links ersetzt wird</h1>
+    	<!-- Bei dieser Notation th:text="|Hello ${name}!|" 
+    	wird der StandardText durch Hello <Wert der variable name> -->
+    	<h1 th:text="|Hello ${name}!|">StandardText</h1>
 
     </body>
 </html>
