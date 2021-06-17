@@ -47,6 +47,7 @@ public class PersonRestController {
 	}
 	
 	
+	
 	/**
 	 * @GetMapping("/json/person/{id}")
 	 * Für die Pathvariable "id" wird beim Aufruf ein Wert eingesetzt.
