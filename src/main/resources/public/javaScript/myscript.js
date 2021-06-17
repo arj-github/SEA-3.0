@@ -105,6 +105,12 @@ function onrefresh(event) {
 
 }
 
+function ontestdaten(event) {
+	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
+	
+	fetch(`http://localhost:8080/json/person/testdaten`, {});
+}
+
 var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
 
@@ -116,6 +122,9 @@ input.addEventListener("click", onrefresh);
 
 var input = document.getElementById("updatebutton");
 input.addEventListener("click", onupdate);
+
+var input = document.getElementById("datenbutton");
+input.addEventListener("click", ontestdaten);
 
 function getAllPersons(){
 fetch("http://localhost:8080/json/persons/all")
