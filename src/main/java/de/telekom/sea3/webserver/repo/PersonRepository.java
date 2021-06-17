@@ -23,6 +23,11 @@ public class PersonRepository {
 	public List<Person> getAll() {
 		return personen;
 	}
+	
+	public List<Person> getAll4ServerTemplate() {
+		this.testdaten();
+		return personen;
+	}
 
 	public void delete(int id) {
 		for (int i = 0; i < personen.size(); i++) {
