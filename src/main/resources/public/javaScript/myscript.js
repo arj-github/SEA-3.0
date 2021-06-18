@@ -70,7 +70,7 @@ function oninputclick(event) {
 						"plz": "${plz}",
 						"ort": "${ort}"
 						}`;
-
+						
 	fetch("/json/person", {
 		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
@@ -118,7 +118,10 @@ function onupdate(event) {
 						"ort": "${ort}"
 						}`;
 						
-	fetch("/json/person/", {
+	console.log("Hallo");
+	console.log(jsondata);
+						
+	fetch("/json/person/update", {
 		method: 'PUT', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
 		headers: {

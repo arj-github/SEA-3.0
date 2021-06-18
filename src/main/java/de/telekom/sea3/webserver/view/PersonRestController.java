@@ -88,7 +88,7 @@ public class PersonRestController {
 		
 	}
 	
-	@PutMapping("/json/person/")
+	@PutMapping("/json/person/update")
 	public void updatePerson(@RequestBody Person person) {
 		personService.update(person);
 		

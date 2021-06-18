@@ -40,26 +40,36 @@ public class PersonRepository {
 	public void update(Person person) {
 		for (int i = 0; i < personen.size(); i++) {
 			if (personen.get(i).getId() == person.getId()) {
-				if (!(personen.get(i).getAnrede()!="")){
-					personen.get(i).setAnrede(person.getAnrede());
+				var anrede=person.getAnrede();
+				var vorname=person.getVorname();
+				var nachname=person.getNachname();
+				var email=person.getEmail();
+				var str=person.getStrasse();
+				var plz=person.getPLZ();
+				var ort=person.getOrt();
+			
+				if (!anrede.equals("")){
+					System.out.println(person.getAnrede());
+					personen.get(i).setAnrede(anrede);
 				};
-				if (!(personen.get(i).getVorname()!="")){
-					personen.get(i).setVorname(person.getVorname());
+				if (!vorname.equals("")){
+					System.out.println("Hallo");
+					personen.get(i).setVorname(vorname);
 				};
-				if (!(personen.get(i).getNachname()!="")){
-					personen.get(i).setNachname(person.getNachname());
+				if (!nachname.equals("")){
+					personen.get(i).setNachname(nachname);
 				};
-				if (!(personen.get(i).getEmail()!="")){
-					personen.get(i).setEmail(person.getEmail());
+				if (!email.equals("")){
+					personen.get(i).setEmail(email);
 				};
-				if (!(personen.get(i).getStrasse()!="")){
-					personen.get(i).setStrasse(person.getStrasse());
+				if (!str.equals("")){
+					personen.get(i).setStrasse(str);
 				};
-				if (!(personen.get(i).getPLZ()!="")){
-					personen.get(i).setPLZ(person.getPLZ());
+				if (!plz.equals("")){
+					personen.get(i).setPLZ(plz);
 				};
-				if (!(personen.get(i).getOrt()!="")){
-					personen.get(i).setOrt(person.getOrt());
+				if (!ort.equals("")){
+					personen.get(i).setOrt(ort);
 				};
 			}
 		}
