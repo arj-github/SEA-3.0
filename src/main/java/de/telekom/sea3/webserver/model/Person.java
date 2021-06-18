@@ -6,22 +6,24 @@ public class Person {
 	private String vorname;
 	private String nachname;
 	private String anrede;
-	private String eMail;
+	private String email;
 	private String strasse;
 	private	String ort;
 	private String plz;
-	private String geburtsdatum;
 
 	
 	public Person() {};
-	public Person(int i, String anrede, String vorname, String nachname) {
+	public Person(int i, String anrede, String vorname, String nachname,
+			String email, String strasse, String plz, String ort) {
 		this.id = i;
 		this.anrede = anrede;
 		this.vorname = vorname;
 		this.nachname = nachname;
-		// eMail einbauen
-		// Strasse PLZ Ort
-		// Geburtsdatum
+		this.email = email;
+		this.strasse = strasse;
+		this.plz = plz;
+		this.ort = ort;
+
 	}
 
 	public String getVorname() {
@@ -57,11 +59,11 @@ public class Person {
 
 	}
 	
-	public String geteMail() {
-		return eMail;
+	public String getEmail() {
+		return email;
 	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getStrasse() {
 		return strasse;
@@ -75,16 +77,11 @@ public class Person {
 	public void setOrt(String ort) {
 		this.ort = ort;
 	}
-	public String getPlz() {
+	public String getPLZ() {
 		return plz;
 	}
-	public void setPlz(String plz) {
+	public void setPLZ(String plz) {
 		this.plz = plz;
 	}
-	public String getGeburtsdatum() {
-		return geburtsdatum;
-	}
-	public void setGeburtsdatum(String geburtsdatum) {
-		this.geburtsdatum = geburtsdatum;
-	}
+
 }

@@ -16,6 +16,10 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 			+ `<td> ${laufvariable.anrede} </td>`
 			+ "<td>" + laufvariable.vorname + "</td>"
 			+ "<td>" + laufvariable.nachname + "</td>"
+			+ `<td> ${laufvariable.email} </td>`
+			+ `<td> ${laufvariable.strasse} </td>`
+			+ `<td> ${laufvariable.plz} </td>`
+			+ `<td> ${laufvariable.ort} </td>`
 			+ "</tr>"
 )
 	}
@@ -39,6 +43,7 @@ function resetForm() {
 function resetTable() {
 	var tb = document.getElementById("tbody1");
 	tb.innerHTML="";
+	getAllPersons();
 }
 
 
@@ -47,12 +52,24 @@ function oninputclick(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	console.log("click");
 
+	var anrede = document.getElementById("anrede").value;
 	var id = document.getElementById("id").value;
 	var vorname = document.getElementById("vorname").value;
 	var nachname = document.getElementById("nachname").value;
-	var anrede = document.getElementById("anrede").value;
+	var email = document.getElementById("email").value;
+	var strasse = document.getElementById("strasse").value;
+	var plz = document.getElementById("plz").value;
+	var ort = document.getElementById("ort").value;
 	
-	var jsondata = `{"id": "${id}","vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
+	var jsondata = `{	"id": "${id}",
+						"anrede": "${anrede}",
+						"vorname": "${vorname}",
+						"nachname": "${nachname}",
+						"email": "${email}",
+						"strasse": "${strasse}",
+						"plz": "${plz}",
+						"ort": "${ort}"
+						}`;
 
 	fetch("/json/person", {
 		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
@@ -60,7 +77,8 @@ function oninputclick(event) {
 		headers: {
 			'Content-Type': 'application/json'
 		}
-	});
+	})
+	.then(resetTable);
 
 }
 
@@ -73,20 +91,33 @@ function ondelete(event) {
 		
 	fetch(`/json/person/${id}`, {
 		method: 'DELETE'
-	});
+	})
+	.then(resetTable);
 
 }
 
 function onupdate(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	
+	var anrede = document.getElementById("anrede").value;
 	var id = document.getElementById("id").value;
 	var vorname = document.getElementById("vorname").value;
 	var nachname = document.getElementById("nachname").value;
-	var anrede = document.getElementById("anrede").value;
+	var email = document.getElementById("email").value;
+	var strasse = document.getElementById("strasse").value;
+	var plz = document.getElementById("plz").value;
+	var ort = document.getElementById("ort").value;
 	
-	var jsondata = `{"id": "${id}","vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
-
+	var jsondata = `{	"id": "${id}",
+						"anrede": "${anrede}",
+						"vorname": "${vorname}",
+						"nachname": "${nachname}",
+						"email": "${email}",
+						"strasse": "${strasse}",
+						"plz": "${plz}",
+						"ort": "${ort}"
+						}`;
+						
 	fetch("/json/person/", {
 		method: 'PUT', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
@@ -100,14 +131,14 @@ function onupdate(event) {
 
 function onrefresh(event) {
 	resetTable();
-	//getAllPersons();
-
 }
 
 function ontestdaten(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	
-	fetch(`/json/person/testdaten`, {});
+	fetch(`/json/person/testdaten`, {})
+	.then(resetTable);
+
 }
 
 var input = document.getElementById("button");
@@ -131,6 +162,5 @@ fetch("/json/persons/all")
 	.then(getTxtFromJsonUndPackInsHTML);
 	resetForm();
 }
-
 
 getAllPersons();

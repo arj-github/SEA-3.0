@@ -33,10 +33,6 @@ public class PersonService {
 		return personRepository.getAll4ServerTemplate();
 	}
 
-	public Person get(int id) {
-		return new Person(1, "Frau", "Angelika", "Neu");
-	}
-
 	public Person add(Person person) {
 		personRepository.add(person);
 		return person;
