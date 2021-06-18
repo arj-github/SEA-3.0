@@ -31,7 +31,7 @@
 	width: 100%;
 	max-width: 960px;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 0 0px;
 	box-sizing: border-box;
 }
 
@@ -256,18 +256,18 @@ a:hover {
 .button, button, input[type="submit"], input[type="reset"], input[type="button"]
 	{
 	display: inline-block;
-	height: 38px;
-	padding: 0 30px;
+	height: 32px;
+	padding: 0 10px;
 	color: #555;
 	text-align: center;
-	font-size: 11px;
+	font-size: 8px;
 	font-weight: 600;
 	line-height: 38px;
 	letter-spacing: .1rem;
 	text-transform: uppercase;
 	text-decoration: none;
 	white-space: nowrap;
-	background-color: transparent;
+	background-color: palegreen;
 	border-radius: 4px;
 	border: 1px solid #bbb;
 	cursor: pointer;
@@ -305,7 +305,7 @@ a:hover {
 input[type="email"], input[type="number"], input[type="search"], input[type="text"],
 	input[type="tel"], input[type="url"], input[type="password"], textarea,
 	select {
-	height: 38px;
+	height: 20px;
 	padding: 6px 10px;
 	/* The 6px vertically centers text on FF, ignored by Webkit */
 	background-color: #fff;
@@ -338,8 +338,8 @@ input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focu
 
 label, legend {
 	display: block;
-	margin-bottom: .5rem;
-	font-weight: 600;
+	margin-bottom: 0rem;
+	font-weight: 400;
 }
 
 fieldset {
@@ -422,10 +422,10 @@ button, .button {
 }
 
 input, textarea, select, fieldset {
-	margin-bottom: 1.5rem;
+	margin-bottom: 0rem;
 }
 
-pre, blockquote, dl, figure, table {
+pre, blockquote, dl, figure {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -471,33 +471,4 @@ hr {
 	content: "";
 	display: table;
 	clear: both;
-}
-
-/* Media Queries
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*
-Note: The best way to structure the use of media queries is to create the queries
-near the relevant code. For example, if you wanted to change the styles for buttons
-on small devices, paste the mobile query code up in the buttons section and style it
-there.
-*/
-
-/* Larger than mobile */
-@media ( min-width : 400px) {
-}
-
-/* Larger than phablet (also point when grid becomes active) */
-@media ( min-width : 550px) {
-}
-
-/* Larger than tablet */
-@media ( min-width : 750px) {
-}
-
-/* Larger than desktop */
-@media ( min-width : 1000px) {
-}
-
-/* Larger than Desktop HD */
-@media ( min-width : 1200px) {
 }

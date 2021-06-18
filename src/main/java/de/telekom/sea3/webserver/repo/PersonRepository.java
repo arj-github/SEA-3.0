@@ -11,7 +11,7 @@ import de.telekom.sea3.webserver.model.Person;
 public class PersonRepository {
 
 	private List<Person> personen = new ArrayList<Person>();
-
+	
 	public int getSize() {
 		return personen.size();
 	}

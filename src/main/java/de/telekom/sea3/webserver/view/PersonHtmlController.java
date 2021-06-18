@@ -52,7 +52,7 @@ public class PersonHtmlController {
 	// übergeben wird
 	@GetMapping("/blub")
 	public String leseNameVonURL(Model model, 
-			@RequestParam(value = "name",required = false,defaultValue = "DefaultVon@Reguest") String name ) {
+			@RequestParam(value = "name",required = false,defaultValue = "Default") String name ) {
 
 		model.addAttribute("name", name);
 		return "count";
@@ -61,9 +61,11 @@ public class PersonHtmlController {
 	// Aufruf: http://localhost:8080/blub/?name=BIBI
 	
 	
+	//Mölgich aber sinnlos, weil zur Statische Seiten führt
 	//Statische Seite, die auf ServerSeite gebaut wird
-	//Grundlage: /templates/personen.html
-	// model.addAttribute("ListenNameInPersonen.html", etwas Iterierbares!!!-hier-eine Liste! keine Referenz! )
+	//Web-Seite - hier: /templates/personen.html
+	//model.addAttribute("ListenNameInPersonen.html", etwas Iterierbares!!!-hier-eine Liste! keine Referenz! )
+	//@ResponseBody - hier nicht notwendig, weil 
 	@GetMapping("/personenX")
 	public String personenMitTemplate(Model model){
 		

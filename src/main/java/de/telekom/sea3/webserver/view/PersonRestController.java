@@ -14,16 +14,19 @@ import de.telekom.sea3.webserver.model.Personen;
 import de.telekom.sea3.webserver.model.Size;
 import de.telekom.sea3.webserver.service.PersonService;
 
+
 @RestController
 public class PersonRestController {
 	
 	private PersonService personService;
+
 	
 	// Verbindung der Klassen - personService zu PersonController
 	@Autowired
 	public PersonRestController(PersonService personService) {
 		super(); 
 		this.personService = personService;
+
 	}
 	
 	/**
@@ -96,7 +99,6 @@ public class PersonRestController {
 		personService.testdaten();
 		
 	}
-	
-	
+
 		
 }
