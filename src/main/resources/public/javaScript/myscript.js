@@ -5,18 +5,19 @@ function getJson(irgendwas) {
 
 // Json-kommt vom Server und wird im Browser ausgegeben
 function getTxtFromJsonUndPackInsHTML(myjson) {
-	var tabelle = document.getElementById("tid001");
+	var tabelle = document.getElementById("tbody1");
 	var i = 0;
 	for (var laufvariable of myjson.personen) {
 		// neue Zeile am Ende der exist. Tabelle anfügen
 		tabelle.insertAdjacentHTML("beforeend",
 			"<tr>"
-			+ `<td> ${++i} </td>`
+			+ `<td> ${laufvariable.id}  </td>`
 			+ `<td><img src= ${getIcon(laufvariable.anrede)} ></td>`
 			+ `<td> ${laufvariable.anrede} </td>`
 			+ "<td>" + laufvariable.vorname + "</td>"
 			+ "<td>" + laufvariable.nachname + "</td>"
-			+ "</tr>")
+			+ "</tr>"
+)
 	}
 }
 
@@ -36,11 +37,8 @@ function resetForm() {
 }
 
 function resetTable() {
-	var tb = document.querySelectorAll('td');
-	console.log(tb);
-  	for (var i = 0; i < tb.length; i++) {
-		tb[i].parentNode.removeChild(tb[i]);
-    }
+	var tb = document.getElementById("tbody1");
+	tb.innerHTML="";
 }
 
 
@@ -56,7 +54,7 @@ function oninputclick(event) {
 	
 	var jsondata = `{"id": "${id}","vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
 
-	fetch("http://localhost:8080/json/person", {
+	fetch("/json/person", {
 		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
 		headers: {
@@ -73,7 +71,7 @@ function ondelete(event) {
 	
 	var id = document.getElementById("id").value;
 		
-	fetch(`http://localhost:8080/json/person/${id}`, {
+	fetch(`/json/person/${id}`, {
 		method: 'DELETE'
 	});
 
@@ -89,26 +87,27 @@ function onupdate(event) {
 	
 	var jsondata = `{"id": "${id}","vorname": "${vorname}","nachname": "${nachname}","anrede": "${anrede}"}`;
 
-	fetch("http://localhost:8080/json/person/", {
+	fetch("/json/person/", {
 		method: 'PUT', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
 		headers: {
 			'Content-Type': 'application/json'
 		}
-	});
+	})	
+	.then(resetTable);
 
 }
 
 function onrefresh(event) {
 	resetTable();
-	getAllPersons();
+	//getAllPersons();
 
 }
 
 function ontestdaten(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	
-	fetch(`http://localhost:8080/json/person/testdaten`, {});
+	fetch(`/json/person/testdaten`, {});
 }
 
 var input = document.getElementById("button");
@@ -127,7 +126,7 @@ var input = document.getElementById("datenbutton");
 input.addEventListener("click", ontestdaten);
 
 function getAllPersons(){
-fetch("http://localhost:8080/json/persons/all")
+fetch("/json/persons/all")
 	.then(getJson)
 	.then(getTxtFromJsonUndPackInsHTML);
 	resetForm();

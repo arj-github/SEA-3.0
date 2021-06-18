@@ -6,7 +6,8 @@
 <!-- link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/skeleton.css"   -->
 <link rel="stylesheet" href="../css/myCSS.css">
-<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../images/favicon.ico">
 
 <title>ARJ Html Trials</title>
 <script src="javaScript/myscript.js" type="module"></script>
@@ -18,22 +19,28 @@
 		<div class="bereich1" id="b01">
 			<h3>Liste der Personen:</h3>
 			<table id="tid001">
-				<tr>
-					<th>Id</th>
-					<th>Pic</th>
-					<th>Anrede</th>
-					<th>Vorname</th>
-					<th>Nachname</th>
-				</tr>
-				<tr th:each="person: ${personsList}">
-					<td th:text="${person.id}">?</td>
-					<td th:text="${person.anrede}">NN</td>
-					<td th:text="${person.vorname}">NN</td>
-					<td th:text="${person.nachname}">NN</td>
-				</tr>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Anrede</th>
+						<th>Vorname</th>
+						<th>Nachname</th>
+					</tr>
+				</thead>
+<!-- Aufbau der Tabelleninhaltd über iterierbare Variable und each-Konstrukt -->
+<!-- funktioniert ist aber nicht sinvoll weil ein serverseitiger Seitenaufbau -->
+<!-- einer statischen Seite entspricht und die Aufbaulast den Server belastet -->
+				<tbody id="tbody1">
+					<tr th:each="person: ${personsList}">
+						<td th:text="${person.id}">?</td>
+						<td th:text="${person.anrede}">NN</td>
+						<td th:text="${person.vorname}">NN</td>
+						<td th:text="${person.nachname}">NN</td>
+					</tr>
+				</tbody>
 			</table>
 			<header th:fragment="top">
-				<a th:href="@{/size}">Home page</a>
+				<a th:href="@{/size}">Umleitung auf die Seite /size</a>
 			</header>
 			<br>
 
