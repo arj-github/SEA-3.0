@@ -5,48 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/skeleton.css"   -->
-<link rel="stylesheet" href="css/myCSS.css">
+<link rel="stylesheet" href="css/mycss.css">
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-
-<title>ARJ Html Trials</title>
+<title>SEA-Welle4</title>
 <script src="javaScript/myscript.js" type="module"></script>
 </head>
 <body>
-	<div class="hintergrundFuerAlles">
-		<h1>Gruppe SEA - Welle 4</h1>
-		<hr>
-		<div class="bereich1" id="b01">
-			<h3>Liste der Personen:</h3>
-			<table id="tid001">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Pic</th>
-						<th>Anrede</th>
-						<th>Vorname</th>
-						<th>Nachname</th>
-					</tr>
-				</thead>
-				<tbody id='tbody1'>
-				</tbody>
-			</table>
-			<br> <input type="button" id="refreshbutton" value="Refresh">
+	<div id="headdiv">
+	<header>
+		<br>
+		<h1>Gruppe SEA - Welle 4</h1></td>
+	</header>
+	<hr>
+	</div>
+	<div  id="navAndSection">
+	<nav>
+				<form id="form">
+					<h3>Was möchten Sie tun?</h3>
+					<input type="button" id="button" value="Mitmachen"> 
+					<input type="button" id="updatebutton" value="Update"> 
+					<input type="button" id="deletebutton" value="Delete">
+					<input type="button" id="datenbutton" value="Testdaten">
+					<br>
+					<br>
+					<input type="text" id="id"	name="id"><label for="id">Id:</label> <br>
+					<input type="text" id="anrede" name="anrede"><label for="anrede">Anrede:</label><br>
+					<input type="text" id="vorname" name="vorname"><label for="vorname">Vorname:</label><br>
+					<input type="text" id="nachname" name="nachname"><label for="nachname">Nachname:</label><br>
+					<input type="email" id="email" name="email"><label for="email">eMail:</label><br>
+					<input type="text" id="strasse" name="strasse"><label for="strasse">Strasse:</label><br>
+					<input type="text" id="plz" name="plz"><label for="plz">PLZ:</label><br>
+					<input type="text" id="ort" name="ort"><label for="ort">Ort:</label><br>
+					<br>
+				</form>
+	</nav>
+		<div id="sectiondiv">
+		<section>
+			<h3>List of participants
+				<input type="button" id="refreshbutton" value="Refresh"></h3>
+				<div id="t001div">
+				<table id="tid001">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Icon</th>
+							<th>Anrede</th>
+							<th>Vorname</th>
+							<th>Nachname</th>
+							<th>Email</th>
+							<th>Strasse</th>
+							<th>PLZ</th>
+							<th>Ort</th>
+						</tr>
+					</thead>
+					<tbody id='tbody1'>
+					</tbody>
+				</table>
+				</div>
+		</section>
 		</div>
-		<hr>
-		<form id="form">
-			<h3>What do you whish?</h3>
-			<label for="id">Id:</label><br> <input type="text" id="id"
-				name="id"><br> <label for="vorname">Vorname:</label><br>
-			<input type="text" id="vorname" name="vorname"><br> <label
-				for="nachname">Nachname:</label><br> <input type="text"
-				id="nachname" name="nachname"><br> <label for="anrede">Salutation:</label><br>
-			<input type="text" id="anrede" name="anrede"><br> <br>
-			<input type="button" id="button" value="Join"> <input
-				type="button" id="updatebutton" value="Update"> <input
-				type="button" id="deletebutton" value="Delete"><br> <input
-				type="button" id="datenbutton" value="Testdaten">
-		</form>
-		<hr>
+	</div>
+	
+	<div id="footerdiv">
+	<hr>
+	<footer>
+		<h4>Thanks for visiting SEA side.
+		</footer>
+		</h4>
+	<hr>
 	</div>
 </body>
 </html>

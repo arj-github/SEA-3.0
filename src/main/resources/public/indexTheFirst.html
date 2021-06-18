@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/skeleton.css"   -->
+<link rel="stylesheet" href="css/myCSS.css">
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+<title>ARJ Html Trials</title>
+<script src="javaScript/myscript.js" type="module"></script>
+</head>
+<body>
+	<div class="hintergrundFuerAlles">
+		<h1>Gruppe SEA - Welle 4</h1>
+		<hr>
+		<div class="bereich1" id="b01">
+			<h3>Liste der Personen:</h3>
+			<table id="tid001">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Pic</th>
+						<th>Anrede</th>
+						<th>Vorname</th>
+						<th>Nachname</th>
+					</tr>
+				</thead>
+				<tbody id='tbody1'>
+				</tbody>
+			</table>
+			<br> <input type="button" id="refreshbutton" value="Refresh">
+		</div>
+		<hr>
+		<form id="form">
+			<h3>What do you whish?</h3>
+			<label for="id">Id:</label><br> <input type="text" id="id"
+				name="id"><br> <label for="vorname">Vorname:</label><br>
+			<input type="text" id="vorname" name="vorname"><br> <label
+				for="nachname">Nachname:</label><br> <input type="text"
+				id="nachname" name="nachname"><br> <label for="anrede">Salutation:</label><br>
+			<input type="text" id="anrede" name="anrede"><br> <br>
+			<input type="button" id="button" value="Join"> <input
+				type="button" id="updatebutton" value="Update"> <input
+				type="button" id="deletebutton" value="Delete"><br> <input
+				type="button" id="datenbutton" value="Testdaten">
+		</form>
+		<hr>
+	</div>
+</body>
+</html>

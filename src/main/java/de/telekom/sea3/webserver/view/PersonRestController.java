@@ -62,11 +62,11 @@ public class PersonRestController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/json/person/{id}")
-	public Person getPerson(@PathVariable("id") int id) {
-		return personService.get(id);
-		
-	}
+//	@GetMapping("/json/person/{id}")
+//	public Person getPerson(@PathVariable("id") int id) {
+//		return personService.get(id);
+//		
+//	}
 	
 	/**
 	 * Mit @GetMapping - sind Personen-Daten nicht gut
