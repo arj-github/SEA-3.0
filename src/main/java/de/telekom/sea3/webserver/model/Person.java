@@ -1,14 +1,29 @@
 package de.telekom.sea3.webserver.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name="personen")
+@Entity
 public class Person {
 
+	@Id
 	private int id;
+	@Column
 	private String vorname;
+	@Column
 	private String nachname;
+	@Column
 	private String anrede;
+	@Column
 	private String email;
+	@Column
 	private String strasse;
+	@Column
 	private	String ort;
+	@Column
 	private String plz;
 
 	

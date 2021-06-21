@@ -27,8 +27,8 @@
 						<th>Nachname</th>
 					</tr>
 				</thead>
-<!-- Aufbau der Tabelleninhaltd über iterierbare Variable und each-Konstrukt -->
-<!-- funktioniert ist aber nicht sinvoll weil ein serverseitiger Seitenaufbau -->
+<!-- Aufbau des Tabelleninhaltes über iterierbare Variable und each-Konstrukt -->
+<!-- funktioniert, ist aber nicht sinvoll weil ein serverseitiger Seitenaufbau -->
 <!-- einer statischen Seite entspricht und die Aufbaulast den Server belastet -->
 				<tbody id="tbody1">
 					<tr th:each="person: ${personsList}">
