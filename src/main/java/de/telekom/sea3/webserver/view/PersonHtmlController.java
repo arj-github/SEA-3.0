@@ -28,53 +28,53 @@ public class PersonHtmlController {
 	@GetMapping("/size")
 	@ResponseBody
 	public String getSize() {
-		String string = String.format(HTMLTEMPLATE, personService.getSize());
+		String string = String.format(HTMLTEMPLATE, personService.count());
 		return string;
 	}
-
-	@GetMapping("/count")
-	public String getCount(Model model) {
-		String htmlFileName = "count";
-		String name = "Welt";
-		model.addAttribute("name", name);
-
-		return htmlFileName;
-	}
-	
-	@GetMapping("/size2")
-	public String getVarSize(Model model) {
-		model.addAttribute("sizeVar", personService.getSize());
-		return "size2";
-	}
-
-	// Die Variable "name"-siehe html-Seite count.html
-	// wird durch den Wert, den man im Aufruf über /?name=Wert
-	// übergeben wird
-	@GetMapping("/blub")
-	public String leseNameVonURL(Model model, 
-			@RequestParam(value = "name",required = false,defaultValue = "Default") String name ) {
-
-		model.addAttribute("name", name);
-		return "count";
-
-	}
-	// Aufruf: http://localhost:8080/blub/?name=BIBI
-	
-	
-	//Mölgich aber sinnlos, weil zur Statische Seiten führt
-	//Statische Seite, die auf ServerSeite gebaut wird
-	//Web-Seite - hier: /templates/personen.html
-	//model.addAttribute("ListenNameInPersonen.html", etwas Iterierbares!!!-hier-eine Liste! keine Referenz! )
-	//@ResponseBody - hier nicht notwendig, weil 
-	@GetMapping("/personenX")
-	public String personenMitTemplate(Model model){
-		
-		model.addAttribute("personsList", personService.getAllPersons4ServerTemplate());
-		return "personen";
-
-	}
-	
-	
-	
+//
+//	@GetMapping("/count")
+//	public String getCount(Model model) {
+//		String htmlFileName = "count";
+//		String name = "Welt";
+//		model.addAttribute("name", name);
+//
+//		return htmlFileName;
+//	}
+//	
+//	@GetMapping("/size2")
+//	public String getVarSize(Model model) {
+//		model.addAttribute("sizeVar", personService.getSize());
+//		return "size2";
+//	}
+//
+//	// Die Variable "name"-siehe html-Seite count.html
+//	// wird durch den Wert, den man im Aufruf über /?name=Wert
+//	// übergeben wird
+//	@GetMapping("/blub")
+//	public String leseNameVonURL(Model model, 
+//			@RequestParam(value = "name",required = false,defaultValue = "Default") String name ) {
+//
+//		model.addAttribute("name", name);
+//		return "count";
+//
+//	}
+//	// Aufruf: http://localhost:8080/blub/?name=BIBI
+//	
+//	
+//	//Mölgich aber sinnlos, weil zur Statische Seiten führt
+//	//Statische Seite, die auf ServerSeite gebaut wird
+//	//Web-Seite - hier: /templates/personen.html
+//	//model.addAttribute("ListenNameInPersonen.html", etwas Iterierbares!!!-hier-eine Liste! keine Referenz! )
+//	//@ResponseBody - hier nicht notwendig, weil 
+//	@GetMapping("/personenX")
+//	public String personenMitTemplate(Model model){
+//		
+//		model.addAttribute("personsList", personService.getAllPersons4ServerTemplate());
+//		return "personen";
+//
+//	}
+//	
+//	
+//	
 	
 }
