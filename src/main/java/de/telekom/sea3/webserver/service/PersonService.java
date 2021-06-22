@@ -1,12 +1,13 @@
 package de.telekom.sea3.webserver.service;
 
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.telekom.sea3.webserver.model.*;
 import de.telekom.sea3.webserver.repo.PersonRepository;
-import de.telekom.sea3.webserver.repo.PersonRepositoryOhneDBAnbindung;
+
 
 @Service
 public class PersonService {
@@ -26,35 +27,83 @@ public class PersonService {
 //		return personRepository.
 //	}
 	
+	public Person get(long id) {
+		Optional<Person> op= personRepository.findById((Long) id);
+		Person person = op.get();
+		
+		if (person.equals(null)) {
+			throw new NullPointerException();
+		} else return person;
+	}
+	
 	public long count() {
 		return personRepository.count();
 		
 	}
 
-//	public Personen getAllPersons() {
-//		return new Personen(personRepository.getAll());
-//	}
-//	
-//	public List<Person> getAllPersons4ServerTemplate() {
-//		return personRepository.getAll4ServerTemplate();
-//	}
-//
-//	public Person add(Person person) {
-//		personRepository.add(person);
-//		return person;
-//	}
-//
-//	public void delete(int id) {
-//		personRepository.delete(id);
-//	}
-//	
-//	public void update(Person person) {
-//		personRepository.update(person);
-//	}
-//
-//	public void testdaten() {
-//		personRepository.testdaten();
-//		
-//	}
+	public Personen getAllPersons() {
+		Personen ps = new Personen();
+			for (Person p:personRepository.findAll()) {
+				ps.getPersonen().add(p);
+			}
+			return ps;
+	}
+	
+
+	public Person add(Person person) {
+		personRepository.save(person);
+		return person;
+	}
+
+	public void delete(long id) {
+		Optional<Person> op = personRepository.findById((Long) id );
+		Person person = op.get();
+		
+		if (person.equals(null)) {
+			throw new NullPointerException();
+		} else personRepository.delete(person);
+	}
+	
+	public void update(Person person) {
+		
+		var anrede=person.getAnrede();
+		var vorname=person.getVorname();
+		var nachname=person.getNachname();
+		var email=person.getEmail();
+		var str=person.getStrasse();
+		var plz=person.getPLZ();
+		var ort=person.getOrt();
+		
+		Optional<Person> op = personRepository.findById((Long) person.getId() );
+		Person personToBeSaved = op.get();
+		
+		if (personToBeSaved.equals(null)) {
+			throw new NullPointerException();
+		} else
+			if (!anrede.equals("")){
+				personToBeSaved.setAnrede(anrede);
+			};
+			if (!vorname.equals("")){
+				System.out.println("Hallo");
+				personToBeSaved.setVorname(vorname);
+			};
+			if (!nachname.equals("")){
+				personToBeSaved.setNachname(nachname);
+			};
+			if (!email.equals("")){
+				personToBeSaved.setEmail(email);
+			};
+			if (!str.equals("")){
+				personToBeSaved.setStrasse(str);
+			};
+			if (!plz.equals("")){
+				personToBeSaved.setPLZ(plz);
+			};
+			if (!ort.equals("")){
+				personToBeSaved.setOrt(ort);
+			};
+			personRepository.save(personToBeSaved);
+		
+		}
 	
 }
