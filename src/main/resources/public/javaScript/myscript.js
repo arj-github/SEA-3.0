@@ -43,8 +43,8 @@ function resetTable() {
 	var tb = document.getElementById("tbody1");
 	tb.innerHTML = "";
 	
-	var sizetext = document.getElementById("sizeId"); // Size-Text 
-	sizetext.classList.add("invisible");	// unsichtbar machen
+	var sizeElem = document.getElementById('sizeId');
+	sizeElem.classList.add("invisible");
 	
 	getAllPersons();
 }
@@ -157,8 +157,10 @@ function onsearchById(event) {
 
 
 function setInHTML(myjson) {
+	var sizeElem = document.getElementById('sizeId');
 	var sizetext = `Aktuelle Anzahl Personen: ${myjson.size} `;
-	document.getElementById('sizeId').innerHTML=sizetext;
+	sizeElem.innerHTML=sizetext;
+	sizeElem.classList.remove("invisible");
 
 }
 
@@ -168,8 +170,6 @@ function onsize() {
 		})
 		.then(getJson)
 		.then(setInHTML);
-
-
 }
 
 var input = document.getElementById("button");
