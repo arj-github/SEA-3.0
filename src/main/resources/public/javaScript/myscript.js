@@ -6,7 +6,6 @@ function getJson(irgendwas) {
 // Json-kommt vom Server und wird im Browser ausgegeben
 function getTxtFromJsonUndPackInsHTML(myjson) {
 	var tabelle = document.getElementById("tbody1");
-	var i = 0;
 	for (var laufvariable of myjson.personen) {
 		// neue Zeile am Ende der exist. Tabelle anfügen
 		tabelle.insertAdjacentHTML("beforeend",
@@ -117,9 +116,6 @@ function onupdate(event) {
 						"plz": "${plz}",
 						"ort": "${ort}"
 						}`;
-						
-	console.log("Hallo");
-	console.log(jsondata);
 						
 	fetch("/json/person/update", {
 		method: 'PUT', // or 'PUT' or beim Lesen 'GET'; method muss sein

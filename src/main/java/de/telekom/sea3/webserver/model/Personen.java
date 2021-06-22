@@ -1,7 +1,6 @@
 package de.telekom.sea3.webserver.model;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 // Das ist nur ein Spiegelbild vom Json. Keine Aktionen hier. Nur Datenhaltung
