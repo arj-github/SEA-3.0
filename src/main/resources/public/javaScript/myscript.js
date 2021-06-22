@@ -49,10 +49,8 @@ function resetTable() {
 // Aus dem Browser lesen und auf dem Server "posten"
 function oninputclick(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
-	console.log("click");
 
 	var anrede = document.getElementById("anrede").value;
-	var id = document.getElementById("id").value;
 	var vorname = document.getElementById("vorname").value;
 	var nachname = document.getElementById("nachname").value;
 	var email = document.getElementById("email").value;
@@ -60,8 +58,7 @@ function oninputclick(event) {
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
 	
-	var jsondata = `{	"id": "${id}",
-						"anrede": "${anrede}",
+	var jsondata = `{	"anrede": "${anrede}",
 						"vorname": "${vorname}",
 						"nachname": "${nachname}",
 						"email": "${email}",
@@ -132,13 +129,28 @@ function onrefresh(event) {
 	resetTable();
 }
 
-function ontestdaten(event) {
+
+function onsearchById(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 	
-	fetch(`/json/person/testdaten`, {})
-	.then(resetTable);
+	// Tabellenansicht löschen
+	var tb = document.getElementById("tbody1");
+	tb.innerHTML="";
+	
+	var id = document.getElementById("id").value;
+	
+	
+	// Treffer suchen und anzeigen ( hier nur 1 Treffer möglich)	
+	fetch(`/json/person/search/${id}`, {
+		method: 'GET',
+	})
+	.then(getJson)
+	.then(getTxtFromJsonUndPackInsHTML);
+	
+	resetForm();
 
 }
+
 
 var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
@@ -152,8 +164,8 @@ input.addEventListener("click", onrefresh);
 var input = document.getElementById("updatebutton");
 input.addEventListener("click", onupdate);
 
-var input = document.getElementById("datenbutton");
-input.addEventListener("click", ontestdaten);
+var input = document.getElementById("searchIdButton");
+input.addEventListener("click", onsearchById);
 
 function getAllPersons(){
 fetch("/json/persons/all")

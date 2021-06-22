@@ -41,6 +41,7 @@ public class PersonService {
 		
 	}
 
+	// ArrayList personen aufbauen
 	public Personen getAllPersons() {
 		Personen ps = new Personen();
 			for (Person p:personRepository.findAll()) {
@@ -105,5 +106,16 @@ public class PersonService {
 			personRepository.save(personToBeSaved);
 		
 		}
+
+	public Personen getPersonById(long id) {
+		Personen ps = new Personen();
+		Optional<Person> op = personRepository.findById((Long) id); 
+		
+		if (!op.equals(null)) {
+			Person personFound = op.get();
+			ps.getPersonen().add(personFound);
+			return ps;
+		} throw new NullPointerException();
+	}
 	
 }
