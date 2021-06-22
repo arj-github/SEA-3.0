@@ -20,7 +20,7 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 			+ `<td> ${laufvariable.plz} </td>`
 			+ `<td> ${laufvariable.ort} </td>`
 			+ "</tr>"
-)
+		)
 	}
 }
 
@@ -41,7 +41,11 @@ function resetForm() {
 
 function resetTable() {
 	var tb = document.getElementById("tbody1");
-	tb.innerHTML="";
+	tb.innerHTML = "";
+	
+	var sizeElem = document.getElementById('sizeId');
+	sizeElem.classList.add("invisible");
+	
 	getAllPersons();
 }
 
@@ -57,7 +61,7 @@ function oninputclick(event) {
 	var strasse = document.getElementById("strasse").value;
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
-	
+
 	var jsondata = `{	"anrede": "${anrede}",
 						"vorname": "${vorname}",
 						"nachname": "${nachname}",
@@ -66,7 +70,7 @@ function oninputclick(event) {
 						"plz": "${plz}",
 						"ort": "${ort}"
 						}`;
-						
+
 	fetch("/json/person", {
 		method: 'POST', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
@@ -74,7 +78,7 @@ function oninputclick(event) {
 			'Content-Type': 'application/json'
 		}
 	})
-	.then(resetTable);
+		.then(resetTable);
 
 }
 
@@ -82,19 +86,19 @@ function oninputclick(event) {
 
 function ondelete(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
-	
+
 	var id = document.getElementById("id").value;
-		
+
 	fetch(`/json/person/${id}`, {
 		method: 'DELETE'
 	})
-	.then(resetTable);
+		.then(resetTable);
 
 }
 
 function onupdate(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
-	
+
 	var anrede = document.getElementById("anrede").value;
 	var id = document.getElementById("id").value;
 	var vorname = document.getElementById("vorname").value;
@@ -103,7 +107,7 @@ function onupdate(event) {
 	var strasse = document.getElementById("strasse").value;
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
-	
+
 	var jsondata = `{	"id": "${id}",
 						"anrede": "${anrede}",
 						"vorname": "${vorname}",
@@ -113,15 +117,15 @@ function onupdate(event) {
 						"plz": "${plz}",
 						"ort": "${ort}"
 						}`;
-						
+
 	fetch("/json/person/update", {
 		method: 'PUT', // or 'PUT' or beim Lesen 'GET'; method muss sein
 		body: jsondata,
 		headers: {
 			'Content-Type': 'application/json'
 		}
-	})	
-	.then(resetTable);
+	})
+		.then(resetTable);
 
 }
 
@@ -132,25 +136,41 @@ function onrefresh(event) {
 
 function onsearchById(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
-	
+
 	// Tabellenansicht löschen
 	var tb = document.getElementById("tbody1");
 	tb.innerHTML="";
-	
+
 	var id = document.getElementById("id").value;
-	
-	
+
+
 	// Treffer suchen und anzeigen ( hier nur 1 Treffer möglich)	
 	fetch(`/json/person/search/${id}`, {
 		method: 'GET',
 	})
-	.then(getJson)
-	.then(getTxtFromJsonUndPackInsHTML);
-	
+		.then(getJson)
+		.then(getTxtFromJsonUndPackInsHTML);
+
 	resetForm();
 
 }
 
+
+function setInHTML(myjson) {
+	var sizeElem = document.getElementById('sizeId');
+	var sizetext = `Aktuelle Anzahl Personen: ${myjson.size} `;
+	sizeElem.innerHTML=sizetext;
+	sizeElem.classList.remove("invisible");
+
+}
+
+function onsize() {
+		fetch(`/json/persons/size/`, {
+			method: 'GET',
+		})
+		.then(getJson)
+		.then(setInHTML);
+}
 
 var input = document.getElementById("button");
 input.addEventListener("click", oninputclick);
@@ -167,10 +187,13 @@ input.addEventListener("click", onupdate);
 var input = document.getElementById("searchIdButton");
 input.addEventListener("click", onsearchById);
 
-function getAllPersons(){
-fetch("/json/persons/all")
-	.then(getJson)
-	.then(getTxtFromJsonUndPackInsHTML);
+var input = document.getElementById("groupSizeButton");
+input.addEventListener("click", onsize);
+
+function getAllPersons() {
+	fetch("/json/persons/all")
+		.then(getJson)
+		.then(getTxtFromJsonUndPackInsHTML);
 	resetForm();
 }
 

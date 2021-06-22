@@ -2,18 +2,18 @@ package de.telekom.sea3.webserver.model;
 
 public class Size {
 	
-	private int size;
+	private long size;
 
-	public Size(int size) {
+	public Size(long size) {
 		super();
 		this.size = size;
 	}
 
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(long size) {
 		this.size = size;
 	}
 }

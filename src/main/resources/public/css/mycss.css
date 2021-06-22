@@ -67,6 +67,12 @@
 }
 
 
+/* default - nicht sichtbar */
+.invisible {
+	display: none;
+}
+
+
 
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
