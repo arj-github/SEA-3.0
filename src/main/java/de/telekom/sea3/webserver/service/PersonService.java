@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.telekom.sea3.webserver.model.*;
 import de.telekom.sea3.webserver.repo.PersonRepository;
@@ -22,10 +23,10 @@ public class PersonService {
 		this.personRepository = personRepository;
 	}
 
-//	public int getSize() {
-//		//return personRepository.getSize();
-//		return personRepository.
-//	}
+
+	public Size getSize() {
+		return new Size(personRepository.count());
+	}
 	
 	public Person get(long id) {
 		Optional<Person> op= personRepository.findById((Long) id);
