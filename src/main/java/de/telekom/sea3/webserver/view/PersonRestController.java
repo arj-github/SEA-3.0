@@ -83,6 +83,12 @@ public class PersonRestController {
 		
 	}
 	
+	@GetMapping("/json/person/search/{id}")
+	public Personen searchOnePerson(@PathVariable("id") long id) {
+		Personen personen = personService.getPersonById(id);
+		return personen;
+	}
+	
 	@DeleteMapping("/json/person/{id}")
 	public void deletePerson(@PathVariable("id") long id) {
 		personService.delete(id);
