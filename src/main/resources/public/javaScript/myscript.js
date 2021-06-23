@@ -29,39 +29,35 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 
 function fillInForm(myjson) {
 	var tabelle = document.getElementById("tbody1");
-	for (var laufvariable of myjson.personen) {
-		// neue Zeile am Ende der exist. Tabelle anfügen
 		tabelle.insertAdjacentHTML("beforeend",
 			"<tr>"
-			+ `<td> ${laufvariable.id}  </td>`
-			+ `<td><img src= ${getIcon(laufvariable.anrede)} ></td>`
-			+ `<td> ${laufvariable.anrede} </td>`
-			+ "<td>" + laufvariable.vorname + "</td>"
-			+ "<td>" + laufvariable.nachname + "</td>"
-			+ `<td> ${laufvariable.gebDatum} </td>`
-			+ `<td> ${laufvariable.email} </td>`
-			+ `<td> ${laufvariable.strasse} </td>`
-			+ `<td> ${laufvariable.plz} </td>`
-			+ `<td> ${laufvariable.ort} </td>`
-			+ `<td> ${laufvariable.version} </td>`
+			+ `<td> ${myjson.id}  </td>`
+			+ `<td><img src= ${getIcon(myjson.anrede)} ></td>`
+			+ `<td> ${myjson.anrede} </td>`
+			+ "<td>" + myjson.vorname + "</td>"
+			+ "<td>" + myjson.nachname + "</td>"
+			+ `<td> ${myjson.gebDatum} </td>`
+			+ `<td> ${myjson.email} </td>`
+			+ `<td> ${myjson.strasse} </td>`
+			+ `<td> ${myjson.plz} </td>`
+			+ `<td> ${myjson.ort} </td>`
+			+ `<td> ${myjson.version} </td>`
 			+ "</tr>"
 		)	
 			
-		document.getElementById("id").value = `${laufvariable.id}`;
-		document.getElementById("anrede").value = `${laufvariable.anrede}`;
-		document.getElementById("vorname").value = `${laufvariable.vorname}`;
-		document.getElementById("nachname").value = `${laufvariable.nachname}`;
-		document.getElementById("gebDatum").value = `${laufvariable.gebDatum}`;
-		document.getElementById("email").value = `${laufvariable.email}`;
-		document.getElementById("strasse").value = `${laufvariable.strasse}`;
-		document.getElementById("plz").value = `${laufvariable.plz}`;
-		document.getElementById("ort").value = `${laufvariable.ort}`;
-		document.getElementById("version").value = `${laufvariable.version}`;
-
-	}
-
+		document.getElementById("id").value = `${myjson.id}`;
+		document.getElementById("anrede").value = `${myjson.anrede}`;
+		document.getElementById("vorname").value = `${myjson.vorname}`;
+		document.getElementById("nachname").value = `${myjson.nachname}`;
+		document.getElementById("gebDatum").value = `${myjson.gebDatum}`;
+		document.getElementById("email").value = `${myjson.email}`;
+		document.getElementById("strasse").value = `${myjson.strasse}`;
+		document.getElementById("plz").value = `${myjson.plz}`;
+		document.getElementById("ort").value = `${myjson.ort}`;
+		document.getElementById("version").value = `${myjson.version}`;
+		
+	return myjson;
 }
-
 
 function getIcon(anrede) {
 	switch (anrede) {
@@ -91,7 +87,7 @@ function resetTable() {
 
 
 // Aus dem Browser lesen und auf dem Server "posten"
-function oninputclick(event) {
+function onInputclick(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 
 	var anrede = document.getElementById("anrede").value;
@@ -102,9 +98,9 @@ function oninputclick(event) {
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
 	var gebDatum = document.getElementById("gebDatum").value;
-	var version = document.getElementById("version").value;
 
-	var jsondata = `{	"anrede": "${anrede}",
+	var jsondata = `{	"id": "0",
+						"anrede": "${anrede}",
 						"vorname": "${vorname}",
 						"nachname": "${nachname}",
 						"gebDatum": "${gebDatum}",
@@ -112,7 +108,7 @@ function oninputclick(event) {
 						"strasse": "${strasse}",
 						"plz": "${plz}",
 						"ort": "${ort}",
-						"version":"${version}"
+						"version": "0"
 						}`;
 
 	fetch("/json/person", {
@@ -144,8 +140,8 @@ function onupdate(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 
 
-	var anrede = document.getElementById("anrede").value;
 	var id = document.getElementById("id").value;
+	var anrede = document.getElementById("anrede").value;
 	var vorname = document.getElementById("vorname").value;
 	var nachname = document.getElementById("nachname").value;
 	var gebDatum = document.getElementById("gebDatum").value;
@@ -154,7 +150,6 @@ function onupdate(event) {
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
 	var version = document.getElementById("version").value;
-
 
 	var jsondata = `{	"id": "${id}",
 						"anrede": "${anrede}",
@@ -167,6 +162,7 @@ function onupdate(event) {
 						"ort": "${ort}",
 						"version": "${version}"
 						}`;
+	console.log(jsondata);
 
 	fetch("/json/person/update", {
 		method: 'PUT', // or 'PUT' or beim Lesen 'GET'; method muss sein
@@ -194,7 +190,7 @@ function searchById(id) {
 		// Tabellenansich neu aufbauen
 		.then(getJson)
 		.then(fillInForm);
-
+	
 }
 
 function onsearchById(event) {
@@ -227,8 +223,8 @@ function onsize() {
 		.then(setInHTML);
 }
 
-var input = document.getElementById("button");
-input.addEventListener("click", oninputclick);
+var input = document.getElementById("inputButton");
+input.addEventListener("click", onInputclick);
 
 var input = document.getElementById("deletebutton");
 input.addEventListener("click", ondelete);

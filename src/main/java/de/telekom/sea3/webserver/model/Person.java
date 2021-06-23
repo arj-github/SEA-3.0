@@ -34,7 +34,7 @@ public class Person {
 	@Column
 	private String plz;
 	@Version
-	private Long version;
+	private long version;
 
 	public Person() {
 	};
