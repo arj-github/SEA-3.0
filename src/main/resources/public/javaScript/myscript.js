@@ -15,14 +15,17 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 			+ `<td> ${laufvariable.anrede} </td>`
 			+ "<td>" + laufvariable.vorname + "</td>"
 			+ "<td>" + laufvariable.nachname + "</td>"
+			+ `<td> ${laufvariable.gebDatum} </td>`
 			+ `<td> ${laufvariable.email} </td>`
 			+ `<td> ${laufvariable.strasse} </td>`
 			+ `<td> ${laufvariable.plz} </td>`
 			+ `<td> ${laufvariable.ort} </td>`
+			+ `<td> ${laufvariable.version} </td>`
 			+ "</tr>"
 		)
 	}
 }
+
 
 function getIcon(anrede) {
 	switch (anrede) {
@@ -43,6 +46,7 @@ function resetTable() {
 	var tb = document.getElementById("tbody1");
 	tb.innerHTML = "";
 	
+	// einem Element eine Class="invisible" hinzufügen
 	var sizeElem = document.getElementById('sizeId');
 	sizeElem.classList.add("invisible");
 	
@@ -61,14 +65,18 @@ function oninputclick(event) {
 	var strasse = document.getElementById("strasse").value;
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
+	var gebDatum = document.getElementById("gebDatum").value;
+	var version = document.getElementById("version").value;
 
 	var jsondata = `{	"anrede": "${anrede}",
 						"vorname": "${vorname}",
 						"nachname": "${nachname}",
+						"gebDatum": "${gebDatum}",
 						"email": "${email}",
 						"strasse": "${strasse}",
 						"plz": "${plz}",
-						"ort": "${ort}"
+						"ort": "${ort}",
+						"version":"${version}"
 						}`;
 
 	fetch("/json/person", {
@@ -99,23 +107,29 @@ function ondelete(event) {
 function onupdate(event) {
 	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
 
+
 	var anrede = document.getElementById("anrede").value;
 	var id = document.getElementById("id").value;
 	var vorname = document.getElementById("vorname").value;
 	var nachname = document.getElementById("nachname").value;
+	var gebDatum = document.getElementById("gebDatum").value;
 	var email = document.getElementById("email").value;
 	var strasse = document.getElementById("strasse").value;
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
+	var version = document.getElementById("version").value;
+	
 
 	var jsondata = `{	"id": "${id}",
 						"anrede": "${anrede}",
 						"vorname": "${vorname}",
 						"nachname": "${nachname}",
+						"gebDatum": "${gebDatum}",
 						"email": "${email}",
 						"strasse": "${strasse}",
 						"plz": "${plz}",
-						"ort": "${ort}"
+						"ort": "${ort}",
+						"version": "${version}"
 						}`;
 
 	fetch("/json/person/update", {

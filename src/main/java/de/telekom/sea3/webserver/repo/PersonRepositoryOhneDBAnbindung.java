@@ -24,10 +24,6 @@ public class PersonRepositoryOhneDBAnbindung {
 		return personen;
 	}
 	
-	public List<Person> getAll4ServerTemplate() {
-		this.testdaten();
-		return personen;
-	}
 
 	public void delete(int id) {
 		for (int i = 0; i < personen.size(); i++) {
@@ -47,6 +43,7 @@ public class PersonRepositoryOhneDBAnbindung {
 				var str=person.getStrasse();
 				var plz=person.getPLZ();
 				var ort=person.getOrt();
+				var gebDatum=person.getGebDatum();
 			
 				if (!anrede.equals("")){
 					System.out.println(person.getAnrede());
@@ -71,18 +68,29 @@ public class PersonRepositoryOhneDBAnbindung {
 				if (!ort.equals("")){
 					personen.get(i).setOrt(ort);
 				};
+				if (!gebDatum.equals(null)){
+					personen.get(i).setGebDatum(gebDatum);
+				};
 			}
 		}
 	}
+	
+	
+	// Dieser Teil war wichtig für Testdaten bei fehlender DB-Persistierung
+//	public List<Person> getAll4ServerTemplate() {
+//	this.testdaten();
+//	return personen;
+//}
+	
 
-	public void testdaten() {
-		Person p1 = new Person(1,"Herr","Adam", "Adamson",  "a.a@my.de", "Lindenstr.", "11111", "Neudorf");
-		Person p2 = new Person(2, "Frau","Eva", "Rippe", "e.r@x.de", "Sommerweg", "22222", "Halden");
-		Person p3 = new Person(3, "Frau","Jackeline", "Adamson", "j.a@my.de", "Hauptstr", "33333", "Alten");
-		
-		this.add(p1);
-		this.add(p2);
-		this.add(p3);
-				
-	}
+//	public void testdaten() {
+//		Person p1 = new Person(1,"Herr","Adam", "Adamson",  "a.a@my.de", "Lindenstr.", "11111", "Neudorf");
+//		Person p2 = new Person(2, "Frau","Eva", "Rippe", "e.r@x.de", "Sommerweg", "22222", "Halden");
+//		Person p3 = new Person(3, "Frau","Jackeline", "Adamson", "j.a@my.de", "Hauptstr", "33333", "Alten");
+//		
+//		this.add(p1);
+//		this.add(p2);
+//		this.add(p3);
+//				
+//	}
 }
