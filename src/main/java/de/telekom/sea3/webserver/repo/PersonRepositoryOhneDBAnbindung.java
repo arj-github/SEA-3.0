@@ -41,7 +41,7 @@ public class PersonRepositoryOhneDBAnbindung {
 				var nachname=person.getNachname();
 				var email=person.getEmail();
 				var str=person.getStrasse();
-				var plz=person.getPLZ();
+				var plz=person.getPlz();
 				var ort=person.getOrt();
 				var gebDatum=person.getGebDatum();
 			
@@ -63,7 +63,7 @@ public class PersonRepositoryOhneDBAnbindung {
 					personen.get(i).setStrasse(str);
 				};
 				if (!plz.equals("")){
-					personen.get(i).setPLZ(plz);
+					personen.get(i).setPlz(plz);
 				};
 				if (!ort.equals("")){
 					personen.get(i).setOrt(ort);

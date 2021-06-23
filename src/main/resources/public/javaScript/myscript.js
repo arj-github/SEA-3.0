@@ -3,6 +3,7 @@ function getJson(irgendwas) {
 	return irgendwas.json();
 }
 
+
 // Json-kommt vom Server und wird im Browser ausgegeben
 function getTxtFromJsonUndPackInsHTML(myjson) {
 	var tabelle = document.getElementById("tbody1");
@@ -26,6 +27,41 @@ function getTxtFromJsonUndPackInsHTML(myjson) {
 	}
 }
 
+function fillInForm(myjson) {
+	var tabelle = document.getElementById("tbody1");
+	for (var laufvariable of myjson.personen) {
+		// neue Zeile am Ende der exist. Tabelle anfügen
+		tabelle.insertAdjacentHTML("beforeend",
+			"<tr>"
+			+ `<td> ${laufvariable.id}  </td>`
+			+ `<td><img src= ${getIcon(laufvariable.anrede)} ></td>`
+			+ `<td> ${laufvariable.anrede} </td>`
+			+ "<td>" + laufvariable.vorname + "</td>"
+			+ "<td>" + laufvariable.nachname + "</td>"
+			+ `<td> ${laufvariable.gebDatum} </td>`
+			+ `<td> ${laufvariable.email} </td>`
+			+ `<td> ${laufvariable.strasse} </td>`
+			+ `<td> ${laufvariable.plz} </td>`
+			+ `<td> ${laufvariable.ort} </td>`
+			+ `<td> ${laufvariable.version} </td>`
+			+ "</tr>"
+		)	
+			
+		document.getElementById("id").value = `${laufvariable.id}`;
+		document.getElementById("anrede").value = `${laufvariable.anrede}`;
+		document.getElementById("vorname").value = `${laufvariable.vorname}`;
+		document.getElementById("nachname").value = `${laufvariable.nachname}`;
+		document.getElementById("gebDatum").value = `${laufvariable.gebDatum}`;
+		document.getElementById("email").value = `${laufvariable.email}`;
+		document.getElementById("strasse").value = `${laufvariable.strasse}`;
+		document.getElementById("plz").value = `${laufvariable.plz}`;
+		document.getElementById("ort").value = `${laufvariable.ort}`;
+		document.getElementById("version").value = `${laufvariable.version}`;
+
+	}
+
+}
+
 
 function getIcon(anrede) {
 	switch (anrede) {
@@ -45,11 +81,11 @@ function resetForm() {
 function resetTable() {
 	var tb = document.getElementById("tbody1");
 	tb.innerHTML = "";
-	
+
 	// einem Element eine Class="invisible" hinzufügen
 	var sizeElem = document.getElementById('sizeId');
 	sizeElem.classList.add("invisible");
-	
+
 	getAllPersons();
 }
 
@@ -118,7 +154,7 @@ function onupdate(event) {
 	var plz = document.getElementById("plz").value;
 	var ort = document.getElementById("ort").value;
 	var version = document.getElementById("version").value;
-	
+
 
 	var jsondata = `{	"id": "${id}",
 						"anrede": "${anrede}",
@@ -148,24 +184,29 @@ function onrefresh(event) {
 }
 
 
-function onsearchById(event) {
-	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
-
-	// Tabellenansicht löschen
-	var tb = document.getElementById("tbody1");
-	tb.innerHTML="";
-
-	var id = document.getElementById("id").value;
-
+function searchById(id) {
 
 	// Treffer suchen und anzeigen ( hier nur 1 Treffer möglich)	
 	fetch(`/json/person/search/${id}`, {
 		method: 'GET',
 	})
-		.then(getJson)
-		.then(getTxtFromJsonUndPackInsHTML);
 
-	resetForm();
+		// Tabellenansich neu aufbauen
+		.then(getJson)
+		.then(fillInForm);
+
+}
+
+function onsearchById(event) {
+	event.preventDefault(); // verhindert das std.verhalten des Browsers - GET 
+
+	var id = document.getElementById("id").value;
+
+	// Tabellenansicht löschen
+	var tb = document.getElementById("tbody1");
+	tb.innerHTML = "";
+
+	searchById(id);
 
 }
 
@@ -173,15 +214,15 @@ function onsearchById(event) {
 function setInHTML(myjson) {
 	var sizeElem = document.getElementById('sizeId');
 	var sizetext = `Aktuelle Anzahl Personen: ${myjson.size} `;
-	sizeElem.innerHTML=sizetext;
+	sizeElem.innerHTML = sizetext;
 	sizeElem.classList.remove("invisible");
 
 }
 
 function onsize() {
-		fetch(`/json/persons/size/`, {
-			method: 'GET',
-		})
+	fetch(`/json/persons/size/`, {
+		method: 'GET',
+	})
 		.then(getJson)
 		.then(setInHTML);
 }
@@ -212,3 +253,5 @@ function getAllPersons() {
 }
 
 getAllPersons();
+
+
