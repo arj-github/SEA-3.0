@@ -82,8 +82,8 @@ public class PersonRestController {
 	}
 
 	@GetMapping("/json/person/search/{id}")
-	public Personen searchOnePerson(@PathVariable("id") long id) {
-		Personen personen = personService.getPersonById(id);
+	public Person searchOnePerson(@PathVariable("id") long id) {
+		Person personen = personService.getPersonById(id);
 		return personen;
 	}
 
