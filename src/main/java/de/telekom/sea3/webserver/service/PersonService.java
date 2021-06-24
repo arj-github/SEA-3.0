@@ -1,26 +1,30 @@
 package de.telekom.sea3.webserver.service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.telekom.sea3.webserver.model.*;
 import de.telekom.sea3.webserver.repo.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class PersonService {
 
 	private PersonRepository personRepository;
-
+	static Logger logger = LoggerFactory.getLogger(PersonService.class);
+	
+	
 	@Autowired
 	public PersonService(PersonRepository personRepository) {
 		super();
 		System.out.println("PersonService instanziiert: " + this.toString());
 		System.out.println("PersonRepository: " + personRepository.toString());
+		logger.info(String.format("[INFO] PersonService instanziiert: %s", this.toString()));
+		logger.info(String.format("[INFO] PersonRepository durch Annotation instanziiert: %s", personRepository.toString()));
 		this.personRepository = personRepository;
 	}
 
