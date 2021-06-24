@@ -104,6 +104,13 @@ public class PersonRestController {
 		}
 	}
 	
+//	@GetMapping("/json/select/ort")
+//	public Personen searchNachOrt(@RequestParam(name="ort", required=false) String ort) {
+//		Personen personen = personService.selectPersonen(ort);
+//		logger.info("Ort: " + ort);
+//		return personen;
+//	}
+	
 	@GetMapping("/json/select")
 	public Personen searchNachOrt(@RequestParam(name="ort", required=false) String ort) {
 		Personen personen = personService.selectPersonen(ort);
