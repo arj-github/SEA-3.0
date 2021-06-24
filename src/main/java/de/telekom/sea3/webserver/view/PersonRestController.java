@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,11 +15,14 @@ import de.telekom.sea3.webserver.model.Person;
 import de.telekom.sea3.webserver.model.Personen;
 import de.telekom.sea3.webserver.model.Size;
 import de.telekom.sea3.webserver.service.PersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class PersonRestController {
 
 	private PersonService personService;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	// Verbindung der Klassen - personService zu PersonController
 	@Autowired
@@ -98,6 +102,13 @@ public class PersonRestController {
 		if (!(person.getId() == 0)) {
 			personService.update(person);
 		}
+	}
+	
+	@GetMapping("/json/select")
+	public Personen searchNachOrt(@RequestParam(name="ort", required=false) String ort) {
+		Personen personen = personService.selectPersonen(ort);
+		logger.info("Ort: " + ort);
+		return personen;
 	}
 
 }

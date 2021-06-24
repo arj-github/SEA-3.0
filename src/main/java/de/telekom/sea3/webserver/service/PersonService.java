@@ -15,7 +15,8 @@ import org.slf4j.LoggerFactory;
 public class PersonService {
 
 	private PersonRepository personRepository;
-	static Logger logger = LoggerFactory.getLogger(PersonService.class);
+	//static Logger logger = LoggerFactory.getLogger(PersonService.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
 	@Autowired
@@ -23,7 +24,7 @@ public class PersonService {
 		super();
 		System.out.println("PersonService instanziiert: " + this.toString());
 		System.out.println("PersonRepository: " + personRepository.toString());
-		logger.info(String.format("[INFO] PersonService instanziiert: %s", this.toString()));
+		logger.info(String.format("[INFO] PersonService instanziiert: %s", this.getClass().getName()));
 		logger.info(String.format("[INFO] PersonRepository durch Annotation instanziiert: %s", personRepository.toString()));
 		this.personRepository = personRepository;
 	}
@@ -66,7 +67,9 @@ public class PersonService {
 		Person person = op.get();
 
 		if (person.equals(null)) {
+	//		logger.error(String.format);
 			throw new NullPointerException();
+			
 		} else
 			personRepository.delete(person);
 	}
@@ -84,6 +87,18 @@ public class PersonService {
 			return person;
 		}
 		throw new NullPointerException();
+	}
+	
+//	public Iterable<Person> selPersonen(String searchExpression) {
+//		return personRepository.selPersonen(searchExpression);
+//	}
+	
+	public Personen selectPersonen(String ort) {
+		Personen ps = new Personen();
+		for (Person p : personRepository.selectPersonen(ort)) {
+			ps.getPersonen().add(p);
+		}
+		return ps;
 	}
 
 }
