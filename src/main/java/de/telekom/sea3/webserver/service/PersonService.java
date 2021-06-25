@@ -1,6 +1,5 @@
 package de.telekom.sea3.webserver.service;
 
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
